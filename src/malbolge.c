@@ -1,6 +1,7 @@
 #include <crazy.h>
 #include <interpreter.h>
 #include <stdio.h>
+#include <string.h>
 int main() {
     MalbolgeInterpreter *interpreter;
     char buf[512] = {'\0'};
@@ -10,6 +11,7 @@ int main() {
     while (scanf("%s", buf) > 0) {
         set_instruction(interpreter, buf);
         run(interpreter);
+        memset(buf, 0, sizeof(char) * 512);
         printf("\n> ");
     }
 }
