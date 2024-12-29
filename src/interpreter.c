@@ -3,6 +3,7 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 typedef struct MalbolgeInterpreter {
     uint64_t a;
@@ -25,6 +26,12 @@ void set_instruction(MalbolgeInterpreter *interpreter,
                      const char *instruction) {
     uint16_t i, i_instr = 0;
     uint8_t is_whitespace = 0;
+
+    interpreter->a = 0;
+    interpreter->c = 0;
+    interpreter->d = 0;
+    memset(interpreter->memory, 0, sizeof(uint16_t) * 59049);
+
     for (i = 0; instruction[i_instr]; i++) {
         while (1) {
             switch (instruction[i_instr]) {
